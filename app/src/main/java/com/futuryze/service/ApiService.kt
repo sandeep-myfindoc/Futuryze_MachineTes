@@ -7,5 +7,5 @@ import retrofit2.http.Query
 
 interface ApiService {
     @GET("data/2.5/onecall")
-    fun getHourlyTemp(@Query("lat") lat: String,@Query("lon") lon: String,@Query("appid") apiKey: String, @Query("page") page: Long): Call<ServerResponse?>
+    fun getHourlyTemp(@Query("lat") lat: Float,@Query("lon") lon: Float,@Query("appid") apiKey: String, @Query("page") page: Long): Call<ServerResponse?>
 }

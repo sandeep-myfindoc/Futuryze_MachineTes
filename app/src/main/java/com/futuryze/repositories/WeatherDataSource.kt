@@ -14,13 +14,14 @@ import retrofit2.Callback
 
 
 // It act as a Repositry
-class PlayerDataSource : PageKeyedDataSource<Long, HourlyTemperatureModel?>() {
+class WeatherDataSource : PageKeyedDataSource<Long, HourlyTemperatureModel?>() {
     private var service: ApiService? = null
     private val limit = 20
     override fun loadInitial(params: LoadInitialParams<Long>, callback: LoadInitialCallback<Long, HourlyTemperatureModel?>) {
         Log.d("Intial Load", "Intial Load")
+        //FuturyzeApplication.instance?.let { Prefs.with(it) }!!.getFloat(SharedPreferencesName.LATITUDE,0F)
         service = RestClient(NetworkConnection()).client
-        service?.getHourlyTemp("31.6340","74.8723",BuildConfig.apiKey, 1)?.enqueue(object : Callback<ServerResponse?> {
+        service?.getHourlyTemp(31.6340F,74.8723F,BuildConfig.apiKey, 1)?.enqueue(object : Callback<ServerResponse?> {
             override fun onResponse(call: Call<ServerResponse?>, serverResponse: retrofit2.Response<ServerResponse?>) {
                 Log.d("Inside Success","Inside Success"+serverResponse.body()?.hourly.toString());
                 if (serverResponse != null && serverResponse.body() != null) {
@@ -39,7 +40,7 @@ class PlayerDataSource : PageKeyedDataSource<Long, HourlyTemperatureModel?>() {
         Log.d("Load Before", "Load Before")
         service = RestClient(NetworkConnection()).client
         Log.d("Param key", params.key.toString() + "")
-        service?.getHourlyTemp("31.6340","74.8723",BuildConfig.apiKey,params.key)?.enqueue(object : Callback<ServerResponse?> {
+        service?.getHourlyTemp(31.6340F,74.8723F,BuildConfig.apiKey,params.key)?.enqueue(object : Callback<ServerResponse?> {
             override fun onResponse(call: Call<ServerResponse?>, serverResponse: retrofit2.Response<ServerResponse?>) {
                 val hourlyTempList: List<HourlyTemperatureModel?>? = serverResponse?.body()?.hourly
                 if (serverResponse != null && serverResponse.body() != null) {
@@ -62,7 +63,7 @@ class PlayerDataSource : PageKeyedDataSource<Long, HourlyTemperatureModel?>() {
         Log.d("Load After", "Load After")
         service = RestClient(NetworkConnection()).client
         Log.d("Param key", params.key.toString() + "")
-        service?.getHourlyTemp("","31.6340",BuildConfig.apiKey,params.key)?.enqueue(object : Callback<ServerResponse?> {
+        service?.getHourlyTemp(31.6340F,74.8723F,BuildConfig.apiKey,params.key)?.enqueue(object : Callback<ServerResponse?> {
             override fun onResponse(call: Call<ServerResponse?>, serverResponse: retrofit2.Response<ServerResponse?>) {
                 val hourlyTempList: List<HourlyTemperatureModel?>? = serverResponse?.body()?.hourly
                 if (serverResponse != null && serverResponse.body() != null) {

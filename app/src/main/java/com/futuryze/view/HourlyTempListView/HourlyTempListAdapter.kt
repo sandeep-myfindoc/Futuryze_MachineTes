@@ -9,7 +9,8 @@ import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.futuryze.R
-import com.futuryze.databinding.LayoutSubitemMovieBinding
+import com.futuryze.databinding.LayoutSubitemTempBinding
+
 import com.futuryze.model.topRateMoviesList.HourlyTemperatureModel
 
 
@@ -25,7 +26,7 @@ class HourlyTempListAdapter : PagedListAdapter<HourlyTemperatureModel, HourlyTem
     protected constructor(diffCallback: DiffUtil.ItemCallback<HourlyTemperatureModel?>) : super(diffCallback) {}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HourlyTempViewHolder {
-        var binding: LayoutSubitemMovieBinding
+        var binding: LayoutSubitemTempBinding
         binding = DataBindingUtil.inflate(
             LayoutInflater.from(mContext),
             R.layout.layout_subitem_temp,
@@ -41,7 +42,7 @@ class HourlyTempListAdapter : PagedListAdapter<HourlyTemperatureModel, HourlyTem
 
     }
 
-    inner class HourlyTempViewHolder(var binding: LayoutSubitemMovieBinding) :
+    inner class HourlyTempViewHolder(var binding: LayoutSubitemTempBinding) :
         RecyclerView.ViewHolder(binding.root) {
         init {
             /*binding.getRoot().setOnClickListener(View.OnClickListener {

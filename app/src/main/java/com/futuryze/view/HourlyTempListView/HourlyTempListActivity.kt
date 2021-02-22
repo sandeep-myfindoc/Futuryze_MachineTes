@@ -27,7 +27,7 @@ class HourlyTempListActivity : SuperActivity(){
         viewModel = ViewModelProviders.of(this).get(HourlyTempListViewModel::class.java)
         binding?.viewModel = viewModel
         receiver = ConnectivityReceiver()
-        updateToolbarWithoutBackButton(resources.getString(R.string.title_top_rated_movies))
+        updateToolbarWithoutBackButton(resources.getString(R.string.title_hourly_weather_list_screen))
         initRecyclerView()
         binding!!.swipeLayout.setOnRefreshListener(onRefreshListener)
         if (!CommonUtility(this).checkInternetConnection()) {

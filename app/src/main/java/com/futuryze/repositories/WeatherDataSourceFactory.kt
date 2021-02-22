@@ -4,8 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
 import com.futuryze.model.topRateMoviesList.HourlyTemperatureModel
 
-class PlayerDataSourceFactory : DataSource.Factory<Long, HourlyTemperatureModel>() {
-    var playerLiveDataSource: MutableLiveData<PlayerDataSource>
+class WeatherDataSourceFactory : DataSource.Factory<Long, HourlyTemperatureModel>() {
+    var weatherLiveDataSource: MutableLiveData<WeatherDataSource>
     /*override fun create(): PlayerDataSource {
         val playerDataSource = PlayerDataSource()
         playerLiveDataSource.postValue(playerDataSource)
@@ -14,12 +14,12 @@ class PlayerDataSourceFactory : DataSource.Factory<Long, HourlyTemperatureModel>
     }*/
 
     init {
-        playerLiveDataSource = MutableLiveData()
+        weatherLiveDataSource = MutableLiveData()
     }
 
     override fun create(): DataSource<Long, HourlyTemperatureModel?> {
-        var playerDataSource = PlayerDataSource()
-        playerLiveDataSource.postValue(playerDataSource)
+        var playerDataSource = WeatherDataSource()
+        weatherLiveDataSource.postValue(playerDataSource)
         return playerDataSource
     }
 }
